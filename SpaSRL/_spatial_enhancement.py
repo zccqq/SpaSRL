@@ -18,7 +18,7 @@ def spatial_enhancement(
     n_pcs: int = 15,
     use_highly_variable: Optional[bool] = None,
     normalize_total: bool = False,
-    log1p: bool = False,
+    log1p: bool = True,
     copy: bool = False,
 ) -> Optional[AnnData]:
     '''
