@@ -18,6 +18,7 @@ def spatial_enhancement(
     n_pcs: int = 15,
     use_highly_variable: Optional[bool] = None,
     normalize_total: bool = False,
+    log1p: bool = False,
     copy: bool = False,
 ) -> Optional[AnnData]:
     '''
@@ -38,6 +39,8 @@ def spatial_enhancement(
         By default uses them if they have been determined beforehand.
     normalize_total
         Whether to normalize each cell by total counts over all genes.
+    log1p
+        Whether to compute the logarithm of the data matrix.
     copy
         Return a copy instead of writing to ``adata``.
     
@@ -58,7 +61,7 @@ def spatial_enhancement(
     adata.layers['counts'] = adata.X
     
     sc.pp.normalize_total(adata) if normalize_total else None
-    sc.pp.log1p(adata)
+    sc.pp.log1p(adata) if log1p else None
     
     adata.layers['log1p'] = adata.X
     
